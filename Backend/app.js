@@ -5,7 +5,11 @@ const { exec } = require('child_process');
 const path = require('path');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: '*', // Allow all origins for simplicity; adjust as needed
+  methods: ['GET', 'POST'], // Allow specific methods
+}
+));
 app.use(express.json());
 
 app.post('/run', (req, res) => {
