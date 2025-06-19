@@ -11,7 +11,7 @@ function App() {
 
   const handleRun = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/run", {
+      const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/run`, {
         code: code,
         language: "python",
       });
