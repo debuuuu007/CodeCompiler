@@ -12,18 +12,24 @@ app.use(cors({
 ));
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the Code Execution API');
+})
+
 app.post('/run', (req, res) => {
-  const { code } = req.body;
+  const { code,input } = req.body;
 
   const codePath = path.join(__dirname, 'judge', 'code.py');
+   const inputPath = path.join(__dirname, 'judge', 'input.txt');
 
   // Write the submitted code to a file
   fs.writeFileSync(codePath, code);
+  fs.writeFileSync(inputPath, input || '');
 
-  // Run it using Python (no Docker)
-  exec(`python3 ${codePath}`, (err, stdout, stderr) => {
+  // Run it using Python (use 'python' for Windows, wrap path in quotes)
+  exec(`python "${codePath}" < "${inputPath}"`, (err, stdout, stderr) => {
     if (err) {
-      return res.json({ error: stderr || err.message });
+      return res.json({ output: stderr ||'Error executing code' });
     }
     res.json({ output: stdout });
   });

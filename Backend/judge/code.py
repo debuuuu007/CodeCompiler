@@ -1,4 +1,4 @@
 # Write your code here
-a=10
-b=20
+a=int(input())
+b=int(input())
 print(a+b)
