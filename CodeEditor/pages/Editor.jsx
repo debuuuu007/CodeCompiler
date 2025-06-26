@@ -30,11 +30,7 @@ const CodeEditor = () => {
         <h1 className="text-3xl font-bold">Welcome to the Code Editor</h1>
       </div>
       <div className="flex flex-row w-full mt-4 overflow-hidden ">
-
-        <div className='bg-red-500 w-1/3 flex items-center justify-center'>
-          {/* Add your content here */}
-        </div>
-        <div className='p-4 border border-gray-300 rounded-lg shadow-lg bg-gray-300 w-2/3'>
+        <div className='p-4 border border-gray-300 rounded-lg shadow-lg bg-gray-300 w-1/2'>
           <Editor
             height="500px"
             width="100%"
@@ -54,13 +50,14 @@ const CodeEditor = () => {
 
           <input type="button" onClick={handleRun} value="Run Code" className='p-4 bg-green-500' />
         </div>
-
-
-      </div>
-      <div className="m-4 p-5 bg-gray-100 border rounded w-full ">
+        <div className="m-4 p-5 bg-gray-100 border border-amber-700 rounded w-1/2">
         <p>Output:</p>
         <pre>{output}</pre>
       </div>
+
+
+      </div>
+      
     </div>
   )
 }
